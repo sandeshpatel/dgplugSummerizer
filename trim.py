@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 import re
+import sys
+import urllib.request
 
-teacher = "sayan"
-# opening file to read from 
-file_name = "Logs-2017-07-31-13-33.txt"
-log  = open(file_name, 'r')
+teacher = input("enter teacher's name (warning: case sensitive): ")
 #open file to write summary
 target = open("target.txt",'w')
 
@@ -13,7 +12,13 @@ regular_expression = "^\[\d\d:\d\d\]\s<" + teacher + ">\s\S*[^:]\s"
 regex=re.compile(regular_expression) 
 
 #finding the lines which are matching the regular expression
-for line in log:
-	if re.match(regex, line ):
-		print(line)
-		target.write(line)
+log_url = sys.argv[1]
+with  urllib.request.urlopen(log_url) as log:
+	for line in log:
+		#line in some byte form, decode to utf-8
+		line = line.decode('utf-8')
+		if re.match(regex, line ):
+			print(line)
+			target.write(line)
+
+target.close()
