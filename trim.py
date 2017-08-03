@@ -2,8 +2,10 @@
 import re
 import sys
 import urllib.request
+from os import system
 
 teacher = input("enter teacher's name (warning: case sensitive): ")
+print("logs will be saved to %s " %("target.txt"))
 #open file to write summary
 target = open("target.txt",'w')
 
@@ -18,7 +20,8 @@ with  urllib.request.urlopen(log_url) as log:
 		#line in some byte form, decode to utf-8
 		line = line.decode('utf-8')
 		if re.match(regex, line ):
-			print(line)
 			target.write(line)
 
 target.close()
+
+system("less "+"target.txt")
