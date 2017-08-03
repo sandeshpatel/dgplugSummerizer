@@ -5,13 +5,14 @@ import urllib.request
 from os import system
 
 teacher = {"kushal","sayan"}
-print("logs will be saved to %s " %("target.txt"))
 #open file to write summary
-target = open("target.txt",'w')
+log_url = sys.argv[1]
+target_file = log_url.split("/")[-1]
+print("\n"+"-"*20 + "logs will be saved to " +target_file+ "-"*20)
+target = open(target_file,'w')
 
 
 #finding the lines which are matching the regular expression
-log_url = sys.argv[1]
 with  urllib.request.urlopen(log_url) as log:
 	for line in log:
 		#line in some byte form, decode to utf-8
@@ -31,7 +32,7 @@ with  urllib.request.urlopen(log_url) as log:
 		words = line.split(" ")
 		if len(words) < 3:
 			continue
-		if (words[1].strip("<>") in teacher) and( not words[2].endswith(":")):
+		if (words[1].strip("<>") in teacher) and( not words[2].endswith(":") ):
 			target.write(line)
 
 target.close()
