@@ -5,6 +5,7 @@ import urllib.request
 from os import system
 
 teacher = {"kushal","sayan"}
+student = set() 
 #open file to write summary
 log_url = sys.argv[1]
 target_file = log_url.split("/")[-1]
@@ -22,8 +23,9 @@ with  urllib.request.urlopen(log_url) as log:
 			continue
 		if words[2] == "next\n":
 			teacher.add(words[1].strip("<>"))
+		else:
+			student.add(words[1].strip("<>"))
 			
-
 
 with  urllib.request.urlopen(log_url) as log:
 	for line in log:
@@ -32,9 +34,10 @@ with  urllib.request.urlopen(log_url) as log:
 		words = line.split(" ")
 		if len(words) < 3:
 			continue
-		if (words[1].strip("<>") in teacher) and( not words[2].endswith(":") ):
+		if (words[1].strip("<>") in teacher) and (not ( words[2].strip(":,") in student)):
+			print(words[2])
 			target.write(line)
 
 target.close()
 
-system("less "+"target.txt")
+system("less "+target_file)
