@@ -35,7 +35,6 @@ with  urllib.request.urlopen(log_url) as log:
 		if len(words) < 3:
 			continue
 		if (words[1].strip("<>") in teacher) and (not ( words[2].strip(":,") in student)):
-			print(words[2])
 			target.write(line)
 
 target.close()
