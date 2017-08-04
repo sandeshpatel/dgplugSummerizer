@@ -6,10 +6,17 @@ from os import system
 
 teacher = {"kushal","sayan"}
 student = set() 
-#open file to write summary
+
+#checking if user has entered url
+if len(sys.argv) < 2:
+	print("FAILED \n run it by typing \n $ ./trim.py url_of_log ")
+	exit() 
+	
 log_url = sys.argv[1]
 target_file = log_url.split("/")[-1]
 print("\n"+"-"*20 + "logs will be saved to " +target_file+ "-"*20)
+
+#open file to write summary
 target = open(target_file,'w')
 
 
