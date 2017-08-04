@@ -14,7 +14,6 @@ if len(sys.argv) < 2:
 	
 log_url = sys.argv[1]
 target_file = log_url.split("/")[-1]
-print("\n"+"-"*20 + "logs will be saved to " +target_file+ "-"*20)
 
 #open file to write summary
 target = open(target_file,'w')
@@ -47,3 +46,5 @@ with  urllib.request.urlopen(log_url) as log:
 target.close()
 
 system("less "+target_file)
+
+print("\n"+"-"*20 + "log is logged to " +target_file+ "-"*20)
