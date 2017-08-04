@@ -35,7 +35,7 @@ if len(sys.argv) < 2:
 	
 log_url = sys.argv[1]
 
-print("\nPlease wait. Processing …")
+print("\nPlease wait. Processing … \nOnce done, please press SPACE to scroll pagewise or q to quit. ")
 
 #target file name = last token of url
 target_file = log_url.split("/")[-1]
