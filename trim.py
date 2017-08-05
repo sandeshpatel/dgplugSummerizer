@@ -19,7 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
-import re
 import sys
 import urllib.request
 from os import system
@@ -57,7 +56,7 @@ with  urllib.request.urlopen(log_url) as log:
 			student.add(words[1].strip("<>"))
 			
 
-#finding the lines which are matching the regular expression
+#finding the lines which are for whole class
 with  urllib.request.urlopen(log_url) as log:
 	for line in log:
 		#line in some byte form, decode to utf-8
